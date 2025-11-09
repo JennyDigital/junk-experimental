@@ -1,0 +1,137 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="CDC474CEU6_Tester" target="8" version="2">
+  <configuration Name="CDC474CEU6_Tester" />
+  <configuration
+    Name="Debug"
+    c_preprocessor_definitions="DEBUG"
+    gcc_debugging_level="Level 3"
+    gcc_omit_frame_pointer="Yes"
+    gcc_optimization_level="None"
+    hidden="Yes" />
+  <configuration
+    Name="Release"
+    c_preprocessor_definitions="NDEBUG"
+    gcc_debugging_level="None"
+    gcc_omit_frame_pointer="Yes"
+    gcc_optimization_level="Level 1"
+    hidden="Yes" />
+  <configuration
+    Name="THUMB"
+    Platform="ARM"
+    arm_instruction_set="Thumb"
+    arm_library_instruction_set="Thumb"
+    c_preprocessor_definitions="__THUMB"
+    hidden="Yes" />
+  <configuration Name="THUMB Debug" inherited_configurations="THUMB;Debug" />
+  <configuration
+    Name="THUMB Release"
+    inherited_configurations="THUMB;Release" />
+  <project Name="CDC474CEU6_Tester">
+    <configuration
+      CMSIS_CORE="Yes"
+      Name="Common"
+      Placement="Flash"
+      Target="STM32G474CE"
+      arm_architecture="v7EM"
+      arm_core_type="Cortex-M4"
+      arm_fp_abi="Soft"
+      arm_fpu_type="FPv4-SP-D16"
+      arm_linker_heap_size="1024"
+      arm_linker_jtag_pad_pre_dr="1"
+      arm_linker_jtag_pad_pre_ir="5"
+      arm_linker_process_stack_size="0"
+      arm_linker_stack_size="256"
+      arm_simulator_memory_half_words="SystemInit=0x4770;SetSysClock=0x4770"
+      arm_simulator_memory_simulation_filename="$(StudioDir)/bin/ARMSimulatorMemory$(HostDLL)"
+      arm_simulator_memory_simulation_parameter="ROM;0x08000000;0x80000;RAM;0x20000000;0x20000"
+      arm_target_loader_applicable_loaders="Flash"
+      arm_target_loader_default_loader="Flash"
+      arm_target_trace_interface_type="None"
+      c_preprocessor_definitions="USE_HAL_DRIVER;STM32G474xx"
+      c_user_include_directories=";./../USB_Device/App;./../USB_Device/Target;./../Core/Inc;./../Drivers/STM32G4xx_HAL_Driver/Inc;./../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy;./../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;./../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;./../Drivers/CMSIS/Device/ST/STM32G4xx/Include;./../Drivers/CMSIS/Include"
+      debug_register_definition_file="$(TargetsDir)/STM32/STM32G474_Peripherals.xml"
+      linker_memory_map_file="$(TargetsDir)/STM32/STM32G474CE_MemoryMap.xml"
+      linker_section_placement_file="$(StudioDir)/targets/Cortex_M/flash_placement.xml"
+      macros="DeviceVectorsFile=STM32G474xx.vec"
+      project_directory=""
+      project_type="Executable"
+      property_groups_file_path="$(TargetsDir)/STM32/propertyGroups.xml"
+      target_get_partname_script="GetPartName()"
+      target_match_partname_script="MatchPartName(&quot;$(Target)&quot;)"
+      target_script_file="$(TargetsDir)/STM32/STM32_Target.js"
+      target_trace_initialize_script="EnableTrace(&quot;$(TraceInterfaceType)&quot;)" />
+    <configuration
+      Name="Flash"
+      arm_target_flash_loader_file_path="$(LOADER:$(TargetsDir)/STM32/Release/STM32G4_Loader_rpc.elf)"
+      arm_target_loader_can_erase_all="Yes"
+      arm_target_loader_can_lock_all="No"
+      arm_target_loader_can_lock_range="No"
+      arm_target_loader_can_unlock_all="No"
+      arm_target_loader_can_unlock_range="No"
+      target_reset_script="FLASHReset()" />
+    <configuration Name="RAM" target_reset_script="Reset()" />
+    <folder Name="Application">
+      <folder Name="EWARM">
+        <file file_name="./startup_stm32g474xx.s">
+          <configuration Name="Common" build_exclude_from_build="Yes" />
+        </file>
+      </folder>
+      <folder Name="User">
+        <folder Name="Core">
+          <file file_name="./../Core/Src/main.c" />
+          <file file_name="./../Core/Src/stm32g4xx_hal_msp.c" />
+          <file file_name="./../Core/Src/stm32g4xx_it.c" />
+        </folder>
+        <folder Name="USB_Device">
+          <folder Name="App">
+            <file file_name="./../USB_Device/App/usb_device.c" />
+            <file file_name="./../USB_Device/App/usbd_cdc_if.c" />
+            <file file_name="./../USB_Device/App/usbd_desc.c" />
+          </folder>
+          <folder Name="Target">
+            <file file_name="./../USB_Device/Target/usbd_conf.c" />
+          </folder>
+        </folder>
+      </folder>
+    </folder>
+    <folder Name="Drivers">
+      <folder Name="CMSIS">
+        <file file_name="./../Core/Src/system_stm32g4xx.c" />
+      </folder>
+      <folder Name="STM32G4xx_HAL_Driver">
+        <file file_name="./../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.c" />
+        <file file_name="./../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.c" />
+        <file file_name="./../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c" />
+        <file file_name="./../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma_ex.c" />
+        <file file_name="./../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c" />
+        <file file_name="./../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash.c" />
+        <file file_name="./../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c" />
+        <file file_name="./../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c" />
+        <file file_name="./../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_gpio.c" />
+        <file file_name="./../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pcd.c" />
+        <file file_name="./../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pcd_ex.c" />
+        <file file_name="./../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr.c" />
+        <file file_name="./../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c" />
+        <file file_name="./../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc.c" />
+        <file file_name="./../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc_ex.c" />
+        <file file_name="./../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c" />
+      </folder>
+    </folder>
+    <folder Name="Middlewares">
+      <folder Name="USB_Device_Library">
+        <file file_name="./../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c" />
+        <file file_name="./../Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c" />
+        <file file_name="./../Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c" />
+        <file file_name="./../Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c" />
+      </folder>
+    </folder>
+    <folder Name="Source Files">
+      <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc" />
+    </folder>
+    <folder Name="System Files">
+      <file file_name="$(TargetsDir)/STM32/$(DeviceVectorsFile)" />
+      <file file_name="$(TargetsDir)/STM32/STM32_Startup.s" />
+      <file file_name="$(StudioDir)/source/thumb_crt0.s" />
+    </folder>
+  </project>
+</solution>
