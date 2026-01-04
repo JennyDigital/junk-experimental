@@ -26,7 +26,7 @@ typedef enum
                         // Start of user defined states
   ST_Hello,
   ST_Eating,
-  ST_Goodbbye,
+  ST_Goodbye,
                         // End of user defined states
 
   ST_End,               // This state is called to exit the state machine.
@@ -110,7 +110,7 @@ State Eating( void )
 
   printf("I have %d eggs left. NOM!\n", eggs-- );
   if( eggs > 0 ) return ST_Eating;
-  else return ST_Goodbbye;
+  else return ST_Goodbye;
 }
 
 State Goodbye( void )
@@ -135,14 +135,15 @@ State Goodbye( void )
  *  ST_End - if the state machine completes successfully
  *  ST_Error - if an error occurs
  */
-State SM_Run( SM_FuncPtr statePtr[], uint16_t last_state )
+State SM_Run( SM_FuncPtr statePtr[], uint16_t state_number )
 {
   /* Ensure the current state starts at the entry point */
-  curr_state = ST_Entry;
+  uint16_t curr_state = ST_Entry;
+  uint16_t last_state = state_number - 1;
 
   while( curr_state != last_state )
   {
-    if( curr_state <= last_state )
+    if( curr_state < last_state )
     {
       curr_state = statePtr[ curr_state ]();
     }

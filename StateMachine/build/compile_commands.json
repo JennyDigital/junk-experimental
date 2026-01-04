@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/Users/jennifergunn/repos/junk-experimental/StateMachine/build",
+  "command": "/usr/bin/clang -I/Users/jennifergunn/repos/junk-experimental/StateMachine/src/main -g -arch arm64 -std=c11 -Wall -Wfloat-conversion -o CMakeFiles/StateMachine.dir/src/main.c.o -c /Users/jennifergunn/repos/junk-experimental/StateMachine/src/main.c",
+  "file": "/Users/jennifergunn/repos/junk-experimental/StateMachine/src/main.c",
+  "output": "/Users/jennifergunn/repos/junk-experimental/StateMachine/build/CMakeFiles/StateMachine.dir/src/main.c.o"
+}
+]
